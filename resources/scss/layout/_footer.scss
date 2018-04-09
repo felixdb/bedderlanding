@@ -1,0 +1,52 @@
+/**
+ *
+ * Footer CSS
+ *
+ */
+
+  /* Footer page */
+  #page-footer {
+    border-top:1px solid rgba(255,255,255,0.1);
+    height: 70px;
+    line-height: 70px;
+    text-transform: uppercase;
+    color: $white;
+    font-size: 16px;
+    @include small-lap {
+        font-size: 14px;
+        height: 50px;
+        line-height: 50px;
+    }
+    @include breakpoint(laptop) {
+        font-size: 14px;
+        height: 50px;
+        line-height: 50px;
+    }
+    @include breakpoint(tablet) {
+        font-size: 14px;
+        height:45px;
+        line-height: 45px;
+    }
+    @include breakpoint(phone) {
+        font-size: 14px;
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        margin-top: 30px;
+    }
+    small {
+        font-size: 0.875em;
+    }
+}
+
+.navbar-fixed-bottom {
+    @include breakpoint(phone) {
+        position: relative;
+    }
+}
+
+.navbar-fixed-top {
+    @include breakpoint(phone) {
+        position: relative;
+    }
+}

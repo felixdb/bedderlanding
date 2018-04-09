@@ -1,0 +1,83 @@
+/*
+ * Remove text-shadow in selection highlight: h5bp.com/i
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+
+/*
+ * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
+ */
+
+img {
+    vertical-align: middle;
+}
+
+
+
+/* ==========================================================================
+   Chrome Frame prompt
+   ========================================================================== */
+
+
+.bcg {
+    background-position: center center;
+    background-repeat: no-repeat!important;
+    background-attachment: fixed;
+    background-size: initial!important;
+    height: 100%;
+    width: 100%;
+    @include breakpoint(phone) {
+        background-size:auto 100%!important;
+        background-position:center center!important;
+        background-attachment:scroll!important;
+    }
+    @include breakpoint(tablet) {
+        background-size:auto 100%!important;
+        background-position:center center!important;
+        background-attachment:scroll!important;
+    }    
+}
+
+#dummy .bcg {
+    background-image:url(../img/bg/old-new.jpg);
+}
+
+#dummy {
+    height: 580px !important;
+    @include breakpoint(phone) {
+       height: auto !important;
+    }
+    @include breakpoint(tablet) {
+        height:530px!important;
+    }
+}  
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+/* Medium devices (tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .bcg {
+        @include breakpoint(tablet-port) {
+            background-size:cover;
+        }
+    }
+}

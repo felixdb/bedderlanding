@@ -1,0 +1,72 @@
+/**
+ *
+ * Fonts and default styling
+ *
+ */
+
+
+/*=============================
+=            Fonts            =
+=============================*/
+
+@include font-face('futuralight', '../fonts/FuturaStd-Light', 300, normal);
+@include font-face('futurabold', '../fonts/FuturaStd-Bold', 700, normal);
+@include font-face('futurabook', '../fonts/FuturaStd-Book', 400, normal);
+
+/*=====  End of Fonts  ======*/
+
+/*============================================
+=            Define Var for Fonts            =
+============================================*/
+
+$font-main: 'futuralight';
+$font-heading:'futurabold';
+$font-book: 'futurabook';
+
+/*=====  End of Define Var for Fonts  ======*/
+
+/*===================================
+=            Body Styles            =
+===================================*/
+
+body {
+	font: {
+		size:$base-size;
+		family: $font-main;
+	}
+	-webkit-text-size-adjust: 100%;  //fix for iOS
+	overflow-x:hidden;
+}
+
+html {
+	font-size: $base-size;
+}
+
+a {
+	@include animate-fade;
+	&:hover {
+		text-decoration: none;
+	}
+	&:focus {
+		outline: 0;
+		text-decoration: none;
+	}
+}
+
+/*=====  End of Body Styles  ======*/
+
+/*=============================================
+=            General Styles            =
+=============================================*/
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  line-height: 1;
+  font-weight: $regular;
+  font-family: $font-heading;
+}
+
+img {
+	@include animate-fade;
+}
+
+/*=====  End of General Styles  ======*/

@@ -1,0 +1,361 @@
+/**
+ *
+ * Custom Mixins
+ *
+ */
+
+
+/*=================================
+=            Animation            =
+=================================*/
+
+@mixin animate-fade {
+	transition:.25s ease-in-out;
+}
+
+@mixin slow-fade {
+    transition:.1s ease-in-out;
+}
+
+@mixin slower-fade {
+    transition:0.50s ease-in-out;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+
+
+/*=====  End of Animation  ======*/
+
+/*=============================
+=            Fonts            =
+=============================*/
+
+@mixin font-face($font-name, $file-name, $weight: normal, $style: normal) { 
+  @font-face {
+    font-family: quote($font-name);
+    src: url($file-name + '.eot');
+    src: url($file-name + '.eot?#iefix')  format('embedded-opentype'),
+         url($file-name + '.woff') format('woff'),
+         url($file-name + '.ttf')  format('truetype'),
+         url($file-name + '.svg##{$font-name}')  format('svg');
+    font-weight: $weight;
+    font-style: $style;
+  }
+ }
+
+/*=====  End of Fonts  ======*/
+
+/*=====================================
+=            Custom Mixins            =
+=====================================*/
+
+@mixin push-auto {
+    margin: { 
+        left: auto;
+        right: auto;
+    }
+}
+
+.max-col {
+    .container {
+        height: 100%;
+        .row {
+            height: 100%;
+            *[class^='col-'] {
+                height: 100%;
+            }
+        }
+    }
+}
+
+@mixin text-shd {
+  text-shadow: 0px 2px 5px rgba(0,0,0,0.5);
+}
+
+@mixin font-ico {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+    position: absolute;
+}
+
+@mixin txt-shadow {
+    text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.15); 
+}
+
+@mixin block-shadow {
+    box-shadow: 1px 5px 13px 0px rgba(0, 0, 0, 0.22);     
+}
+
+.dark-overlay {
+    position: absolute;
+    top:0px;
+    left:0px;
+    width: 100%;
+    height: 100%;
+    background:rgba(0,0,0,0.5);
+    @include animate-fade;
+}
+
+@mixin clear-pos {
+    position: relative;
+    top:auto;
+    left:auto;
+    transform: none;
+}
+
+@mixin small-lap {
+    @media screen and ( min-width: 1025px ) and ( max-height: 767px ) {
+        @content; 
+    }
+}
+
+@mixin cta-btn {
+  border-radius:32px;
+  height:50px;
+  line-height:50px;
+  color:$white;
+  font-size: 1em;
+  background:$white;
+  display:inline-block;
+  color:$green;
+  padding-left: 40px;
+  padding-right: 40px;
+  font-weight: $bold;
+  text-transform: uppercase;
+  font-family: $font-bold;
+  @include breakpoint(phone) {
+    padding-left: 30px;
+    padding-right: 30px;
+    height:45px;
+    line-height:45px;
+  }
+  &:hover {
+    background:$green;
+    color:$white;
+  }
+}
+
+@mixin content-text {
+    color: #1a1a1a;
+    font-size: 1em;
+    line-height: 180%;
+    margin-bottom: 15px;  
+    line-height:1.4;
+}
+
+@mixin read-btn {
+    display: inline-block;
+    height: 52px;
+    line-height: 52px;
+    border:1px solid rgba(255,255,255,0.4);
+    border-radius:999px;
+    padding-left: 40px;
+    padding-right: 50px;
+    color:$white;
+    text-transform: uppercase;
+    @include txt-shadow;
+    font-size: 1em;
+    position: relative;
+    &:after {
+        @include font-ico;
+        content:'\f105';
+        @include centre(y);
+        right: 25px;
+        @include animate-fade;
+    }
+    &:hover {
+        &:after {
+          @include animate-fade;
+            right: 15px;
+        }
+    }    
+}
+
+
+/*=====  End of Custom Mixins  ======*/
+
+
+/*=============================
+=            Align            =
+=============================*/
+
+
+@mixin centre($axis: "both"){
+    position:absolute;
+    @if $axis == "y"{
+        top:50%;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+    @if $axis == "x"{
+        left:50%;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        transform: translateX(-50%);
+    }
+    @if $axis == "both"{
+        top:50%;
+        left:50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }   
+}
+
+/*=====  End of Align  ======*/
+
+/*=====================================
+=            Color pallete            =
+=====================================*/
+
+@function palette($palette, $tone: 'base') {
+    @return map-get(map-get($palettes, $palette), $tone);
+}
+
+/*=====  End of Color pallete  ======*/
+
+/*================================
+=            Triangle            =
+================================*/
+
+@mixin css-triangle($color, $direction, $size: 6px, $position: absolute, $round: false){
+    @include pseudo($pos: $position);
+    width: 0;
+    height: 0;
+    @if $round {
+        border-radius: 3px;
+    }
+    @if $direction == down {
+        border-left: $size solid transparent;
+        border-right: $size solid transparent;
+        border-top: $size solid $color;
+        margin-top: 0 - round( $size / 2.5 );
+    } @else if $direction == up {
+        border-left: $size solid transparent;
+        border-right: $size solid transparent;
+        border-bottom: $size solid $color;
+        margin-bottom: 0 - round( $size / 2.5 );
+    } @else if $direction == right {
+        border-top: $size solid transparent;
+        border-bottom: $size solid transparent;
+        border-left: $size solid $color;
+        margin-right: -$size;
+    } @else if  $direction == left {
+        border-top: $size solid transparent;
+        border-bottom: $size solid transparent;
+        border-right: $size solid $color;
+        margin-left: -$size;
+    }
+}
+
+/*=====  End of Triangle  ======*/
+
+/*===================================
+=            Placeholder            =
+===================================*/
+
+@mixin input-placeholder {
+    &.placeholder { @content; }
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; }
+}
+
+/*=====  End of Placeholder  ======*/
+
+/*================================
+=            Clearfix            =
+================================*/
+
+%clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// @extend %clearfix;
+
+/*=====  End of Clearfix  ======*/
+
+/*================================
+=            Gradient            =
+================================*/
+
+@mixin background-gradient($start-color, $end-color, $orientation) { 
+    background: $start-color;
+
+    @if $orientation == 'vertical' {
+      background: -webkit-linear-gradient(top, $start-color, $end-color);
+      background: linear-gradient(to bottom, $start-color, $end-color);
+    } @else if $orientation == 'horizontal' {
+      background: -webkit-linear-gradient(left, $start-color, $end-color);
+      background: linear-gradient(to right, $start-color, $end-color);
+    } @else {
+      background: -webkit-radial-gradient(center, ellipse cover, $start-color, $end-color);
+      background: radial-gradient(ellipse at center, $start-color, $end-color);
+    }
+}
+
+// @include background-gradient(red, black, 'vertical');
+
+
+/*=====  End of Gradient  ======*/
+
+/*=====================================
+=            Quick Padding            =
+=====================================*/
+
+@mixin padding($top, $right, $bottom, $left) {
+  padding-top: $top;
+  padding-right: $right;
+  padding-bottom: $bottom;
+  padding-left: $left;
+}
+//Margin mixin
+@mixin margin($top, $right, $bottom, $left) {
+  margin-top: $top;
+  margin-right: $right;
+  margin-bottom: $bottom;
+  margin-left: $left;
+}
+
+// @include padding(1px, 2px, 3px, 4px,);
+// @include margin(1px, 2px, 3px, 4px);
+// @include padding(1px, null, 3px, 4px);
+
+/*=====  End of Quick Padding  ======*/
