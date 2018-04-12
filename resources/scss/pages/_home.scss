@@ -63,21 +63,21 @@
             @include clear-pos;
         }
         h1 {
-            font-size: 3.750em;
+            font-size: 3em;
             text-transform: uppercase;
             margin-bottom: 5px;
             @include breakpoint(laptop) {
-                font-size: 3.5em;
+                font-size: 2.8em;
             }
             @include breakpoint(tablet) {
-                font-size: 3.2em;
+                font-size: 2.6em;
             }
             @include breakpoint(phone) {
-                font-size: 3em;
+                font-size: 2.5em;
                 line-height: 1.2;
             }
             @include breakpoint(phone-xs) {
-                font-size: 2.6em;
+                font-size: 2.4em;
                 line-height: 1.2;
             }
         }
